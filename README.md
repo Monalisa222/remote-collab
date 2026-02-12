@@ -1,24 +1,25 @@
 # README
+# RemoteCollab
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RemoteCollab is a modern SaaS-style collaborative proposal and project management platform built with:
 
-Things you may want to cover:
+- Rails 8.1.2
+- PostgreSQL
+- Turbo + Stimulus
+- Kamal (container deployment)
 
-* Ruby version
+## Architecture Goals
 
-* System dependencies
+- Organization-based access
+- Role-based authorization
+- Proposal collaboration
+- Background jobs
+- JSON API
+- Service object pattern
 
-* Configuration
+## Local Setup
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+bundle install
+rails db:create
+rails s
