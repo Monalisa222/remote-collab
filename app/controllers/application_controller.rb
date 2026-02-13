@@ -18,4 +18,17 @@ class ApplicationController < ActionController::Base
       redirect_to login_path, alert: 'Please log in to access this page.'
     end
   end
+
+  def require_organization_member(organization)
+    unless current_user && organization.users.include?(current_user)
+      redirect_to root_path, alert: 'You do not have access to this organization.'
+    end
+  end
+
+  def require_admin(organization)
+    membership = organization.memberships.find_by(user_id: current_user.id)
+    unless membership&.admin?
+      redirect_to root_path, alert: 'You do not have admin access to this organization.'
+    end
+  end
 end
