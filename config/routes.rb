@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
 
   get "dashboard", to: "users#show"
+
+  resources :organizations, only: [:index, :show]
 end
