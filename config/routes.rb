@@ -25,5 +25,7 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "users#show"
 
-  resources :organizations, only: [:index, :show]
+  resources :organizations, only: [:index, :show] do
+    resources :proposals, only: [:index, :create]
+  end
 end
