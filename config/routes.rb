@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "proposals/index"
+  get "proposals/create"
   get "organizations/index"
   get "organizations/show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -23,5 +25,7 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "users#show"
 
-  resources :organizations, only: [:index, :show]
+  resources :organizations, only: [:index, :show] do
+    resources :proposals, only: [:index, :create]
+  end
 end

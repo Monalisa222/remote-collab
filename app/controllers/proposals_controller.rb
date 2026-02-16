@@ -1,0 +1,36 @@
+class ProposalsController < ApplicationController
+  before_action :set_organization
+
+  def index
+    @proposals = Proposal.where(organization_id: params[:organization_id])
+
+    @proposal = Proposal.new
+  end
+
+  def create
+    @proposal = @organization.proposals.build(proposal_params)
+
+    if @proposal.save
+      respond_to do |format|
+        format.html { redirect_to organization_proposals_path(@organization), notice: "Proposal created successfully." }
+        format.turbo_stream
+      end
+    else
+      respond_to do |format|
+        format.html { render :index, status: :unprocessable_entity }
+        format.turbo_stream { render :index, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  private
+
+  def set_organization
+    @organization = Organization.find(params[:organization_id])
+    require_organization_member(@organization)
+  end
+
+  def proposal_params
+    params.require(:proposal).permit(:title, :description)
+  end
+end

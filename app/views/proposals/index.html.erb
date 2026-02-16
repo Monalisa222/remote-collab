@@ -1,0 +1,11 @@
+<h1>Proposals</h1>
+
+<%= turbo_frame_tag "new_proposal" do %>
+  <%= render "form", proposal: @proposal %>
+<% end %>
+
+<hr>
+
+<div id="proposals">
+  <%= render @proposals %>
+</div>
