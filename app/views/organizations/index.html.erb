@@ -1,2 +1,9 @@
-<h1>Organizations#index</h1>
-<p>Find me in app/views/organizations/index.html.erb</p>
+<h1>Your Organizations</h1>
+
+<ul>
+  <% @organizations.each do |organization| %>
+    <li>
+      <%= link_to organization.name, organization_path(organization) %>
+    </li>
+  <% end %>
+</ul>
