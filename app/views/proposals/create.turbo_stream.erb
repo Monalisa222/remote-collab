@@ -1,7 +1,0 @@
-<%= turbo_stream.append "proposals" do %>
-  <%= render @proposal %>
-<% end %>
-
-<%= turbo_stream.replace "new_proposal" do %>
-  <%= render "form", proposal: Proposal.new %>
-<% end %>
