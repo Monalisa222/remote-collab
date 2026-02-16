@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "proposals/index"
+  get "proposals/create"
   get "organizations/index"
   get "organizations/show"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
