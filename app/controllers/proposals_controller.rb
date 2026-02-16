@@ -13,13 +13,10 @@ class ProposalsController < ApplicationController
     if @proposal.save
       respond_to do |format|
         format.html { redirect_to organization_proposals_path(@organization), notice: "Proposal created successfully." }
-        format.turbo_stream
+        # format.turbo_stream
       end
     else
-      respond_to do |format|
-        format.html { render :index, status: :unprocessable_entity }
-        format.turbo_stream { render :index, status: :unprocessable_entity }
-      end
+      render :index, status: :unprocessable_entity
     end
   end
   

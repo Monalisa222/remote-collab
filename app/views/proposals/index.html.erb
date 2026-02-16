@@ -1,3 +1,5 @@
+<%= turbo_stream_from "organization_#{@organization.id}_proposals" %>
+
 <h1>Proposals</h1>
 
 <%= turbo_frame_tag "new_proposal" do %>
