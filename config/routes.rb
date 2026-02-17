@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get "dashboard", to: "users#show"
 
   resources :organizations, only: [:index, :show] do
-    resources :proposals, only: [:index, :create] do
+    resources :proposals, only: [:index, :create, :show] do
       resources :tasks, only: [:create, :update]
     end
   end

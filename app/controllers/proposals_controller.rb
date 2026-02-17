@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :set_organization
+  before_action :set_proposal, only: [:show]
 
   def index
     @proposals = Proposal.where(organization_id: params[:organization_id])
@@ -25,6 +26,10 @@ class ProposalsController < ApplicationController
   def set_organization
     @organization = Organization.find(params[:organization_id])
     require_organization_member(@organization)
+  end
+
+  def set_proposal
+    @proposal = @organization.proposals.find(params[:id])
   end
 
   def proposal_params
