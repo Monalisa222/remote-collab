@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :set_organization
   before_action :set_proposal
   before_action :set_task, only: [:update]
 
@@ -19,8 +20,13 @@ class TasksController < ApplicationController
 
   private
 
+  def set_organization
+    @organization = Organization.find(params[:organization_id])
+    require_organization_member(@organization)
+  end
+
   def set_proposal
-    @proposal = Proposal.find(params[:proposal_id])
+    @proposal = @organization.proposals.find(params[:proposal_id])
   end
 
   def set_task
