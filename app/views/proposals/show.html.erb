@@ -1,0 +1,14 @@
+<%= turbo_stream_from "proposal_#{@proposal.id}_tasks" %>
+
+<h2><%= @proposal.title %></h2>
+
+<div id="tasks">
+  <%= render @proposal.tasks %>
+</div>
+
+<h4>New Task</h4>
+
+<%= form_with model: [@proposal.organization, @proposal, Task.new] do |f| %>
+  <%= f.text_field :title %>
+  <%= f.submit "Add Task" %>
+<% end %>
