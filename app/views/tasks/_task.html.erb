@@ -1,0 +1,7 @@
+<div id="<%= dom_id(task) %>" class="p-4 border rounded mb-2 flex items-center justify-between" data-controller="task">
+  <input type="checkbox" data-action="change->task#toggle" <%= "checked" if task.completed? %> class="form-checkbox h-5 w-5 text-blue-600" data-task-id="<%= task.id %>" data-proposal-id="<%= task.proposal_id %>" data-organization-id="<%= task.proposal.organization_id %>">
+
+  <span style="<%= 'text-decoration: line-through;' if task.completed? %>">
+    <%= task.title %>
+  </span>
+</div>
