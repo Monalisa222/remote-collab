@@ -1,5 +1,6 @@
 class Proposal < ApplicationRecord
   belongs_to :organization
+  has_many :tasks, dependent: :destroy
 
   validates :title, presence: true
 
