@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.completed! ? @task.pending! : @task.completed!
+    @task.completed? ? @task.pending! : @task.completed!
 
     head :ok
   end
