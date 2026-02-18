@@ -23,6 +23,10 @@ jobs:
           --health-timeout=5s
           --health-retries=5
 
+      redis:
+        image: redis:7
+        ports: ['6379:6379']
+
     env:
       RAILS_ENV: test
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/remote_collab_test
@@ -43,3 +47,12 @@ jobs:
         run: |
           bundle exec rails db:create
           bundle exec rails db:migrate
+
+      - name: Run Rubocop
+        run: bundle exec rubocop
+
+      - name: Run RSpec
+        run: bundle exec rspec
+
+      - name: Run Brakeman
+        run: bundle exec brakeman --no-pager -w2
