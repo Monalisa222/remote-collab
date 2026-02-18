@@ -9,9 +9,10 @@ class ProposalsController < ApplicationController
   end
 
   def create
-    @proposal = @organization.proposals.build(proposal_params)
+    service = ProposalCreator.new(organization: @organization, params: proposal_params)
+    @proposal = service.call
 
-    if @proposal.save
+    if @proposal.persisted?
       respond_to do |format|
         format.html { redirect_to organization_proposals_path(@organization), notice: "Proposal created successfully." }
         # format.turbo_stream
