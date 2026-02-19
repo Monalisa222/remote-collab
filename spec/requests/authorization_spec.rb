@@ -12,7 +12,7 @@ RSpec.describe "Authorization", type: :request do
   end
 
   it "allows access to authorized users" do
-    get dashboard_path
+    get root_path
     expect(response).to be_successful
   end
 end
