@@ -9,7 +9,7 @@ RSpec.describe "Authentication", type: :request do
       password: "password123"
     }
 
-    expect(response).to redirect_to(dashboard_path)
+    expect(response).to redirect_to(organizations_path)
   end
 
   it "rejects invalid credentials" do
