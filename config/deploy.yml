@@ -7,7 +7,7 @@ image: remote_collab
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 0.0.0.0
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -27,7 +27,7 @@ servers:
 # Where you keep your container images.
 registry:
   # Alternatives: hub.docker.com / registry.digitalocean.com / ghcr.io / ...
-  server: localhost:5555
+  server: docker.io
 
   # Needed for authenticated registries.
   # username: your-user
