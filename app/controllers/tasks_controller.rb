@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   def create
     @task = @proposal.tasks.build(task_params)
     if @task.save
-      redirect_to organization_proposals_path(@proposal.organization), notice: "Task created successfully."
+      redirect_to organization_proposal_path(@proposal.organization, @proposal), notice: "Task created successfully."
     else
       redirect_back fallback_location: root_path, alert: "Failed to create task."
     end

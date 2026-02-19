@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   root "organizations#index"
 
-  resources :organizations, only: [:index, :show] do
+  resources :organizations, only: [:index, :show, :new, :create] do
     resources :proposals, only: [:index, :create, :show] do
       resources :tasks, only: [:create, :update]
     end

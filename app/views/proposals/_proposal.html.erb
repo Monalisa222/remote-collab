@@ -1,4 +1,6 @@
 <div id="<%= dom_id(proposal) %>">
-  <h3><%= proposal.title %></h3>
-  <p><%= proposal.description %></p>
+  <%= link_to organization_proposal_path(proposal.organization, proposal) do %>
+    <h3><%= proposal.title %></h3>
+    <p><%= proposal.description %></p>
+  <% end %>
 </div>

@@ -4,5 +4,12 @@ class Proposal < ApplicationRecord
 
   validates :title, presence: true
 
-  broadcasts_to ->(proposal) { "organization_#{proposal.organization_id}_proposals" }
+  after_create_commit do
+    broadcast_append_to(
+      "organization_#{organization_id}_proposals",
+      target: "proposals",
+      partial: "proposals/proposal",
+      locals: { proposal: self }
+    )
+  end
 end

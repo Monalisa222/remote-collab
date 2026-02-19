@@ -1,9 +1,11 @@
 <%= turbo_stream_from "organization_#{@organization.id}_proposals" %>
+<%= link_to "← Back to Organization",
+            organization_path(@organization) %>
 
 <h1>Proposals</h1>
 
 <div data-controller="toggle">
-   <button data-action="click->toggle#toggle" class="mb-4 px-4 py-2 bg-blue-500 text-white rounded">New Proposal</button>
+   <button data-action="click->toggle#toggle" class="mb-4 px-4 py-2 bg-white-500 text-blue rounded">New Proposal</button>
    <div data-toggle-target="content" class="hidden">
 
     <%= render "form", proposal: @proposal %>

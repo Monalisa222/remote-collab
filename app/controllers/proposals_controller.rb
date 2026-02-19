@@ -21,6 +21,10 @@ class ProposalsController < ApplicationController
       render :index, status: :unprocessable_entity
     end
   end
+
+  def show
+    @task = Task.new
+  end
   
   private
 

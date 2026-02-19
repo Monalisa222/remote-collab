@@ -1,9 +1,23 @@
 <h1>Your Organizations</h1>
 
-<ul>
+<%= link_to "New Organization", new_organization_path, class: "btn btn-primary" %>
+
+<hr>
+
+<% if @organizations.empty? %>
+  <p>You are not part of any organizations yet. Create to get started!</p>
+  <%= link_to "New Organization", new_organization_path, class: "btn btn-primary" %>
+<% else %>
+  <p>You are part of the following organizations:</p>
   <% @organizations.each do |organization| %>
-    <li>
-      <%= link_to organization.name, organization_path(organization) %>
-    </li>
+    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+      <h2><%= link_to organization.name, organization_path(organization) %></h2>
+      <p>
+        <strong>Members:</strong>
+        <%= organization.users.count %>
+        <strong>Proposals:</strong>
+        <%= organization.proposals.count %>
+      </p>
+    </div>
   <% end %>
-</ul>
+<% end %>
