@@ -19,7 +19,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find(params[:id])
+    @organization = Organization.includes(proposals: :tasks).find(params[:id])
     require_organization_member(@organization)
   end
 end
