@@ -1,0 +1,7 @@
+<h1><%= @organization.name %></h1>
+<p>Members: <%= @organization.users.count %></p>
+<hr>
+
+<h2>Proposals</h2>
+
+<%= link_to "View All Proposals", organization_proposals_path(@organization) %>

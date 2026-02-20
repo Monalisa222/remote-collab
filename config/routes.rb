@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  require "sidekiq/web"
+  mount Sidekiq::Web => "/sidekiq"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
@@ -10,5 +12,19 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+
+  get "signup" => "users#new"
+  post "signup" => "users#create"
+
+  get "login" => "sessions#new"
+  post "login" => "sessions#create"
+  delete "logout" => "sessions#destroy"
+
+  root "organizations#index"
+
+  resources :organizations, only: [:index, :show, :new, :create] do
+    resources :proposals, only: [:index, :create, :show] do
+      resources :tasks, only: [:create, :update]
+    end
+  end
 end
