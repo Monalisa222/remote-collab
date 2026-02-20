@@ -9,7 +9,7 @@ class ProposalsController < ApplicationController
   end
 
   def create
-    service = ProposalCreator.new(organization: @organization, params: proposal_params)
+    service = ProposalCreator.new(organization: @organization, user: current_user, params: proposal_params)
     @proposal = service.call
 
     if @proposal.persisted?
