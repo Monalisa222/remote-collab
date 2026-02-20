@@ -3,7 +3,7 @@ class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:show]
 
   def index
-    @proposals = Proposal.where(organization_id: params[:organization_id])
+    @proposals = @organization.proposals.includes(:tasks)
 
     @proposal = Proposal.new
   end
