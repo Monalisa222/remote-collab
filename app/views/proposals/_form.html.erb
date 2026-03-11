@@ -1,13 +1,19 @@
+<% if @proposal&.errors&.any? %>
+  <% @proposal.errors.full_messages.each do |message| %>
+    <p style="color:red"><%= message %></p>
+  <% end %>
+<% end %>
+
 <%= form_with model: [@organization, proposal] do |form| %>
-    <div>
-      <%= form.text_field :title, placeholder: "Title" %>
-    </div>
+  <div>
+    <%= form.text_field :title, placeholder: "Title" %>
+  </div>
 
-    <div>
-      <%= form.text_area :description, placeholder: "Description" %>
-    </div>
+  <div>
+    <%= form.text_area :description, placeholder: "Description" %>
+  </div>
 
-    <div>
-      <%= form.submit "Create Proposal" %>
-    </div>
+  <div>
+    <%= form.submit "Create Proposal" %>
+  </div>
 <% end %>

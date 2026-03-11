@@ -4,28 +4,31 @@ class ProposalsController < ApplicationController
 
   def index
     @proposals = @organization.proposals.includes(:tasks)
-
-    @proposal = Proposal.new
+    @proposal ||= Proposal.new
   end
 
   def create
-    service = ProposalCreator.new(organization: @organization, user: current_user, params: proposal_params)
+    service = ProposalCreator.new(
+      organization: @organization,
+      user: current_user,
+      params: proposal_params
+    )
+
     @proposal = service.call
 
-    if @proposal.persisted?
-      respond_to do |format|
+    respond_to do |format|
+      if @proposal.persisted?
         format.html { redirect_to organization_proposals_path(@organization), notice: "Proposal created successfully." }
-        # format.turbo_stream
+      else
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
-    else
-      render :index, status: :unprocessable_entity
     end
   end
 
   def show
     @task = Task.new
   end
-  
+
   private
 
   def set_organization

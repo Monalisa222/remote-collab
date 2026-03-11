@@ -14,7 +14,7 @@ class OrganizationsController < ApplicationController
       Membership.create(user: current_user, organization: @organization, role: :admin)
       redirect_to @organization, notice: "Organization created successfully."
     else
-      render :new
+      render :new,  status: :unprocessable_entity
     end
   end
 
